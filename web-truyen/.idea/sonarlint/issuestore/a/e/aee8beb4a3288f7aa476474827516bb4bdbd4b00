@@ -1,0 +1,10 @@
+
+[
+java:S2259P"EA "NullPointerException" could be thrown; "avtName" is nullable here.(Ό»
+R
+java:S3655="7Call "Optional#isPresent()" before accessing the value.(Ώή†“όÿÿÿÿ
+M
+java:S3655J"7Call "Optional#isPresent()" before accessing the value.(άσ
+P	java:S899X";Do something with the "boolean" value returned by "delete".(ε©…έ
+d
+java:S4042X"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(ε©…έ

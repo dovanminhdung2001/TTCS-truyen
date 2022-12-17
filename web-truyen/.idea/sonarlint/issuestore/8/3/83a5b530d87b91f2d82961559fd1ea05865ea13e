@@ -1,0 +1,28 @@
+
+j
+java:S1104	"OMake sdf a static final constant or non-public and provide accessors if needed.(ÕÃˆ¨ıÿÿÿÿ
+f
+java:S1104
+"PMake sdtf a static final constant or non-public and provide accessors if needed.(–Ù¡ù
+l
+java:S1104"VMake dateUpFile a static final constant or non-public and provide accessors if needed.(˜ÕÀé
+D
+java:S1444	")Make this "public static sdf" field final(ÕÃˆ¨ıÿÿÿÿ
+@
+java:S1444
+"*Make this "public static sdtf" field final(–Ù¡ù
+F
+java:S1444"0Make this "public static dateUpFile" field final(˜ÕÀé
+o
+java:S1845 "YRename method "dateUpFile" to prevent any misunderstanding/clash with field "dateUpFile".(ÕÒÎ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Ò®ÜÄ
+;
+java:S2885	" Make "sdf" an instance variable.(ÕÃˆ¨ıÿÿÿÿ
+7
+java:S2885
+"!Make "sdtf" an instance variable.(–Ù¡ù
+=
+java:S2885"'Make "dateUpFile" an instance variable.(˜ÕÀé
+M
+java:S1135/"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ

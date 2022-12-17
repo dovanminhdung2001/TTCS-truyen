@@ -1,0 +1,19 @@
+
+`	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(Œœ¤ºüÿÿÿÿ
+`	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(êÆÖËùÿÿÿÿ
+[	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(ÈçïÕ
+[	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(Â††‘
+A
+java:S1452,"&Remove usage of generic wildcard type.(¤ƒ¹€úÿÿÿÿ
+e
+java:S4488+"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¶€»²ùÿÿÿÿ
+B
+java:S1125/"'Remove the unnecessary boolean literal.(¿Œù¦ÿÿÿÿÿ
+‡
+java:S1130F"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Œœ¤ºüÿÿÿÿ
+A
+java:S1452F"&Remove usage of generic wildcard type.(Œœ¤ºüÿÿÿÿ
+`
+java:S4488E"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÚŞ•
+A
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü
