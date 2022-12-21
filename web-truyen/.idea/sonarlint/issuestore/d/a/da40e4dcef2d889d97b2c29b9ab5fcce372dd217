@@ -7,8 +7,6 @@ java:S1874"3Remove this use of "PageRequest"; it is deprecated.(Ù¹¡†şÿÿÿÿ8‹İ
 java:S1452#"&Remove usage of generic wildcard type.(Ë‡êŒ
 <
 java:S1452("&Remove usage of generic wildcard type.(Çø–½
-‰
-java:S1130-"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ì‰¢ø8ëÉ¸îÑ0
 <
 java:S1452-"&Remove usage of generic wildcard type.(ì‰¢ø
 s

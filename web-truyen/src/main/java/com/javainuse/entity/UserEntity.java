@@ -24,17 +24,17 @@ public class UserEntity extends BaseEntity implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "avatarId", referencedColumnName = "id")
  	private ImageEntity avatar;
-	private Boolean enable;
+	private Boolean enable = true;
 	@Column
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date disableTo;
 	@Column
-	private Boolean enableComment;
+	private Boolean enableComment = true;
 	@Column
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date disableCommentTo;
 	@Column
-	private Boolean enablePostStory;
+	private Boolean enablePostStory = true;
 	@Column
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date disablePostStoryTo;
