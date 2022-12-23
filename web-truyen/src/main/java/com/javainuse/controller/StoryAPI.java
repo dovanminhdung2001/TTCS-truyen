@@ -28,6 +28,18 @@ public class StoryAPI {
         return ResponseUtil.ok(storySv.updateAvatar(storyId, file));
     }
 
+    @PostMapping("/up-chapter")
+    private ResponseEntity<?> upChapter (
+            @RequestParam Long id,
+            @RequestParam Integer chap,
+            @RequestParam Long storyId,
+            @RequestParam String title,
+            @RequestParam MultipartFile content
+    ) {
+//        storySv.upChapter(id, chap, storyId, title, content);
+        return ResponseUtil.ok("");
+    }
+
     @GetMapping("/v2/id")
     private ResponseEntity<?> findById (@RequestParam Long storyId) {
         return ResponseUtil.ok(storySv.findById(storyId));

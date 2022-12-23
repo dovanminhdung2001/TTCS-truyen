@@ -14,5 +14,4 @@ public interface StorySv extends BaseCRUD<StoryEntity> {
     public StoryEntity updateAvatar(Long storyId, MultipartFile avatar) throws IOException;
     public List<StoryEntity> findByNameContain(String name);
     public Page<StoryEntity> findByNameContain(Pageable pageable, String name);
-
 }

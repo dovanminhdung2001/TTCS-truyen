@@ -112,7 +112,7 @@ public class StorySvImpl implements StorySv {
             }
 
             Files.copy(avatar.getInputStream(), imagePath.resolve(newAvtName));
-            ImageEntity newAtv = imageRepo.save(new ImageEntity(null, newAvtName, "/upload/" + newAvtName));
+            ImageEntity newAtv = imageRepo.save(new ImageEntity(null, newAvtName, "/story/" + newAvtName));
 
             story.setAvatar(newAtv);
             story = storyRepo.save(story);
