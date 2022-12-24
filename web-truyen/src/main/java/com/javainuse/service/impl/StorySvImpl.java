@@ -107,8 +107,12 @@ public class StorySvImpl implements StorySv {
             String newAvtName = DateUtils.dateUpFile() + avatar.getOriginalFilename();
 
             if (story.getAvatar().getId() != 1l) {
-                File oldAvt = new File(story.getAvatar().getPath());
+                File oldAvt = new File("static\\story\\" + story.getAvatar().getName());
                 oldAvt.delete();
+                Long imageId = story.getAvatar().getId();
+                story.setAvatar(null);
+                storyRepo.save(story);
+                imageRepo.deleteById(imageId);
             }
 
             Files.copy(avatar.getInputStream(), imagePath.resolve(newAvtName));

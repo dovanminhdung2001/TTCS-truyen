@@ -84,8 +84,12 @@ public class UserSvImpl implements UserSv {
             String newAvtName = DateUtils.dateUpFile() + avatar.getOriginalFilename();
 
             if (user.getAvatar().getId() != 1l) {
-                File oldAvt = new File(user.getAvatar().getPath());
+                File oldAvt = new File("static\\upload\\" + user.getAvatar().getName());
                 oldAvt.delete();
+                Long imageId = user.getAvatar().getId();
+                user.setAvatar(null);
+                userRepo.save(user);
+                imageRepo.deleteById(imageId);
             }
 
             Files.copy(avatar.getInputStream(), imagePath.resolve(newAvtName));

@@ -1,6 +1,7 @@
 package com.javainuse.controller;
 
 import com.javainuse.model.req.UpStoryForm;
+import com.javainuse.repo.ImageRepo;
 import com.javainuse.service.impl.StorySvImpl;
 import com.javainuse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ import java.io.IOException;
 public class StoryAPI {
     @Autowired
     StorySvImpl storySv;
-
+    @Autowired
+    ImageRepo imageRepo;
     @PostMapping
     private ResponseEntity<?> save (@RequestBody UpStoryForm form) {
         return ResponseUtil.ok(storySv.save(form));
@@ -48,5 +50,11 @@ public class StoryAPI {
     @GetMapping("/v2/name")
     private ResponseEntity<?> findByName (@RequestParam Pageable pageable, @RequestParam String name) {
         return ResponseUtil.ok(storySv.findByNameContain(pageable, name));
+    }
+
+    @GetMapping("/v2/removeImage")
+    private ResponseEntity<?> removeImage(@RequestParam Long imageId) {
+        imageRepo.deleteById(imageId);
+        return ResponseUtil.ok("ok");
     }
 }
