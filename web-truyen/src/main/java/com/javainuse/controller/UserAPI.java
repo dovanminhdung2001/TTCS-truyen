@@ -36,6 +36,11 @@ public class UserAPI {
         return ResponseUtil.ok(userSv.findAll( pageable));
     }
 
+    @GetMapping("/personal")
+    public ResponseEntity<?> getById (@RequestParam Long userId) {
+        return ResponseUtil.ok(userSv.findById(userId).get());
+    }
+
     @PostMapping
     public ResponseEntity<?> save (@RequestBody ChangeUserInforForm form) {
         return ResponseUtil.ok(userSv.save(form));

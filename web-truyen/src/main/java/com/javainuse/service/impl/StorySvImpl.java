@@ -1,6 +1,7 @@
 package com.javainuse.service.impl;
 
 import com.javainuse.entity.*;
+import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
 import com.javainuse.repo.ImageRepo;
 import com.javainuse.repo.KindRepo;
@@ -134,5 +135,10 @@ public class StorySvImpl implements StorySv {
     @Override
     public Page<StoryEntity> findByNameContain(Pageable pageable, String name) {
         return storyRepo.findAllByNameContainingIgnoreCase(pageable, name);
+    }
+
+    @Override
+    public void upChapter(UpChapterForm upChapterForm) {
+
     }
 }

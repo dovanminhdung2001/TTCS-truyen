@@ -1,6 +1,7 @@
 package com.javainuse.service;
 
 import com.javainuse.entity.StoryEntity;
+import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,4 +15,5 @@ public interface StorySv extends BaseCRUD<StoryEntity> {
     public StoryEntity updateAvatar(Long storyId, MultipartFile avatar) throws IOException;
     public List<StoryEntity> findByNameContain(String name);
     public Page<StoryEntity> findByNameContain(Pageable pageable, String name);
+    public void upChapter(UpChapterForm upChapterForm);
 }

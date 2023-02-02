@@ -1,5 +1,6 @@
 package com.javainuse.controller;
 
+import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
 import com.javainuse.repo.ImageRepo;
 import com.javainuse.service.impl.StorySvImpl;
@@ -31,14 +32,8 @@ public class StoryAPI {
     }
 
     @PostMapping("/up-chapter")
-    private ResponseEntity<?> upChapter (
-            @RequestParam Long id,
-            @RequestParam Integer chap,
-            @RequestParam Long storyId,
-            @RequestParam String title,
-            @RequestParam MultipartFile content
-    ) {
-//        storySv.upChapter(id, chap, storyId, title, content);
+    private ResponseEntity<?> upChapter (@RequestBody UpChapterForm upChapterForm) {
+        storySv.upChapter(upChapterForm);
         return ResponseUtil.ok("");
     }
 
