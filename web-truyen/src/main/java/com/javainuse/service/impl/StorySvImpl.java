@@ -3,10 +3,7 @@ package com.javainuse.service.impl;
 import com.javainuse.entity.*;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
-import com.javainuse.repo.ImageRepo;
-import com.javainuse.repo.KindRepo;
-import com.javainuse.repo.StoryKindRepo;
-import com.javainuse.repo.StoryRepo;
+import com.javainuse.repo.*;
 import com.javainuse.service.StorySv;
 import com.javainuse.util.DateUtils;
 import org.modelmapper.ModelMapper;
@@ -31,6 +28,8 @@ public class StorySvImpl implements StorySv {
     StoryRepo storyRepo;
     @Autowired
     KindRepo kindRepo;
+    @Autowired
+    ChapterRepo chapterRepo;
     @Autowired
     StoryKindRepo storyKindRepo;
     @Autowired
@@ -139,6 +138,14 @@ public class StorySvImpl implements StorySv {
 
     @Override
     public void upChapter(UpChapterForm upChapterForm) {
+        ChapterEntity chapter = new ChapterEntity();
 
+        if (upChapterForm.getId() == null) {
+            chapter.setChap(chapterRepo.getChapNumOfStory(upChapterForm.getStoryId()) + 1);
+        } else {
+            chapter = chapterRepo.findById(upChapterForm.getId()).get();
+        }
+        new ModelMapper().map(upChapterForm, chapter);
+        chapterRepo.save(chapter);
     }
 }

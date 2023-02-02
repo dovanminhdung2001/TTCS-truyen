@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_entity")
+@Table(name = "tbl_chapter")
 @EntityListeners(AuditingEntityListener.class)
 public class ChapterEntity extends BaseEntity implements Serializable {
     private Integer chap;

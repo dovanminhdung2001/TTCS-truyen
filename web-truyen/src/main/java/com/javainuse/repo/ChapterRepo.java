@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ChapterRepo extends JpaRepository<ChapterEntity, Long> {
-    @Query("select count(c.storyId) from ChapterEntity c where  c.storyId = :storyId group by :storyId")
+    @Query("select count(c.storyId) from ChapterEntity c where  c.storyId = :storyId")
     Integer getChapNumOfStory(@Param("storyId") Long storyId);
 }
