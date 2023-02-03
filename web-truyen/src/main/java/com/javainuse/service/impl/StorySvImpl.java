@@ -1,6 +1,7 @@
 package com.javainuse.service.impl;
 
 import com.javainuse.entity.*;
+import com.javainuse.model.StoryPersonalDTO;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
 import com.javainuse.repo.*;
@@ -9,6 +10,7 @@ import com.javainuse.util.DateUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -147,5 +149,22 @@ public class StorySvImpl implements StorySv {
         }
         new ModelMapper().map(upChapterForm, chapter);
         chapterRepo.save(chapter);
+    }
+
+    @Override
+    public Page<StoryPersonalDTO> findAllByUserId(Long userId, Pageable pageable) {
+        Page<StoryEntity> storyEntityPage = storyRepo.findAllByAuthorId(pageable, userId);
+        List<StoryEntity> storyEntityList = storyEntityPage.getContent();
+        List<StoryPersonalDTO> storyPersonalDTOList = new ArrayList<>();
+
+
+        for (StoryEntity x : storyEntityList) {
+            storyPersonalDTOList.add(new StoryPersonalDTO(x, chapterRepo.getChapNumOfStory(x.getId())));
+        }
+
+        Page<StoryPersonalDTO> storyPersonalDTOPage = new PageImpl<>(storyPersonalDTOList);
+
+        new ModelMapper().map(storyEntityPage, storyPersonalDTOPage);
+        return storyPersonalDTOPage;
     }
 }

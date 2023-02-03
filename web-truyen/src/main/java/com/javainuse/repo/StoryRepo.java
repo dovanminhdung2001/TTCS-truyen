@@ -11,4 +11,5 @@ public interface StoryRepo extends JpaRepository<StoryEntity, Long> {
      List<StoryEntity> findAllByAuthorId(Long authorId);
      List<StoryEntity> findAllByNameContainingIgnoreCase(String name);
      Page<StoryEntity> findAllByNameContainingIgnoreCase(Pageable pageable, String name);
+     Page<StoryEntity> findAllByAuthorId(Pageable pageable, Long userId);
 }

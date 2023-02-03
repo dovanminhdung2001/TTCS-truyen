@@ -52,4 +52,9 @@ public class StoryAPI {
         imageRepo.deleteById(imageId);
         return ResponseUtil.ok("ok");
     }
+
+    @GetMapping("/personal")
+    private ResponseEntity<?> findAllByUserId(@RequestParam Long userId, Pageable pageable) {
+        return ResponseUtil.ok(storySv.findAllByUserId(userId, pageable));
+    }
 }

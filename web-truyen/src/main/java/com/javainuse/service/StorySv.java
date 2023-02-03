@@ -1,6 +1,7 @@
 package com.javainuse.service;
 
 import com.javainuse.entity.StoryEntity;
+import com.javainuse.model.StoryPersonalDTO;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
 import org.springframework.data.domain.Page;
@@ -16,4 +17,6 @@ public interface StorySv extends BaseCRUD<StoryEntity> {
     public List<StoryEntity> findByNameContain(String name);
     public Page<StoryEntity> findByNameContain(Pageable pageable, String name);
     public void upChapter(UpChapterForm upChapterForm);
+
+    public Page<StoryPersonalDTO> findAllByUserId(Long userId, Pageable pageable);
 }
