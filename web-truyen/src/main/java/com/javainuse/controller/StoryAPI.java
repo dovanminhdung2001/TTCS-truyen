@@ -39,7 +39,7 @@ public class StoryAPI {
 
     @GetMapping("/v2/id")
     private ResponseEntity<?> findById (@RequestParam Long storyId) {
-        return ResponseUtil.ok(storySv.findById(storyId));
+        return ResponseUtil.ok(storySv.findByStoryId(storyId));
     }
 
     @GetMapping("/v2/name")

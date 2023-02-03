@@ -1,4 +1,4 @@
-package com.javainuse.model;
+package com.javainuse.model.dto;
 
 import com.javainuse.entity.StoryEntity;
 import lombok.AllArgsConstructor;

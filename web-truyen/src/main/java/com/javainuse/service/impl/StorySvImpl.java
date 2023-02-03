@@ -1,9 +1,10 @@
 package com.javainuse.service.impl;
 
 import com.javainuse.entity.*;
-import com.javainuse.model.StoryPersonalDTO;
+import com.javainuse.model.dto.StoryPersonalDTO;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
+import com.javainuse.model.res.StoryDetailRes;
 import com.javainuse.repo.*;
 import com.javainuse.service.StorySv;
 import com.javainuse.util.DateUtils;
@@ -56,6 +57,14 @@ public class StorySvImpl implements StorySv {
     @Override
     public StoryEntity save(StoryEntity storyEntity) {
         return storyRepo.save(storyEntity);
+    }
+
+    @Override
+    public StoryDetailRes findByStoryId(Long storyId) {
+        StoryDetailRes storyDetailRes = new StoryDetailRes(storyRepo.findById(storyId).get());
+        storyDetailRes.setChapterByStoryDTOList(chapterRepo.getListChapterByStory(storyId));
+
+        return storyDetailRes;
     }
 
     @Override

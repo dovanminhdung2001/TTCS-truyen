@@ -21,9 +21,7 @@ import com.javainuse.security.jwt.JwtUserDetailsService;
 import com.javainuse.security.jwt.JwtTokenUtil;
 import com.javainuse.security.model.JwtRequest;
 import com.javainuse.security.model.JwtResponse;
-import com.javainuse.model.UserDTO;
-
-import java.util.Date;
+import com.javainuse.model.dto.UserDTO;
 
 @RestController
 @CrossOrigin
