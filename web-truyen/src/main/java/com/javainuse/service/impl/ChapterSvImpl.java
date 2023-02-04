@@ -1,6 +1,7 @@
 package com.javainuse.service.impl;
 
 import com.javainuse.entity.ChapterEntity;
+import com.javainuse.model.res.ReadChapterRes;
 import com.javainuse.repo.ChapterRepo;
 import com.javainuse.service.ChapterSv;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +9,21 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ChapterSvImpl  implements ChapterSv {
     @Autowired
     private ChapterRepo chapterRepo;
 
     @Override
-    public Optional<ChapterEntity> findById(Long chapterId) {
-        return chapterRepo.findById(chapterId);
+    public ReadChapterRes findById(Long chapterId) {
+        ChapterEntity chapter = chapterRepo.findById(chapterId).get();
+        ReadChapterRes res = new ReadChapterRes();
+
+        res.setChapter(chapter);
+        res.setMaxChap(chapterRepo.getChapNumOfStory(chapter.getStoryId()));
+        res.setChapterIdChapNameDTOList(chapterRepo.getAllByStoryId(chapter.getStoryId()));
+
+        return res;
     }
 
     @Override

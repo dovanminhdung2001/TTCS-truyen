@@ -57,4 +57,9 @@ public class StoryAPI {
     private ResponseEntity<?> findAllByUserId(@RequestParam Long userId, Pageable pageable) {
         return ResponseUtil.ok(storySv.findAllByUserId(userId, pageable));
     }
+
+    @GetMapping("/v2/home")
+    private ResponseEntity<?> getHomePage(Pageable pageable) {
+        return ResponseUtil.ok(storySv.getHomePage(pageable));
+    }
 }

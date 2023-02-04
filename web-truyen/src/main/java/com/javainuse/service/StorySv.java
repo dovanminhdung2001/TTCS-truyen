@@ -4,6 +4,7 @@ import com.javainuse.entity.StoryEntity;
 import com.javainuse.model.dto.StoryPersonalDTO;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
+import com.javainuse.model.res.HomePageRes;
 import com.javainuse.model.res.StoryDetailRes;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,4 +22,6 @@ public interface StorySv extends BaseCRUD<StoryEntity> {
     public void upChapter(UpChapterForm upChapterForm);
 
     public Page<StoryPersonalDTO> findAllByUserId(Long userId, Pageable pageable);
+
+    HomePageRes getHomePage(Pageable pageable);
 }

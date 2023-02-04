@@ -1,9 +1,11 @@
 package com.javainuse.service.impl;
 
 import com.javainuse.entity.*;
+import com.javainuse.model.dto.StoryHomePageDTO;
 import com.javainuse.model.dto.StoryPersonalDTO;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
+import com.javainuse.model.res.HomePageRes;
 import com.javainuse.model.res.StoryDetailRes;
 import com.javainuse.repo.*;
 import com.javainuse.service.StorySv;
@@ -192,5 +194,12 @@ public class StorySvImpl implements StorySv {
 
         new ModelMapper().map(storyEntityPage, storyPersonalDTOPage);
         return storyPersonalDTOPage;
+    }
+
+    @Override
+    public HomePageRes getHomePage(Pageable pageable) {
+        Page<StoryHomePageDTO> storyHomePageDTOPage = newestChapterRepo.getHomePage(pageable);
+
+        return null;
     }
 }
