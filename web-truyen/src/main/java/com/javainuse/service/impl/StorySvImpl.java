@@ -41,6 +41,8 @@ public class StorySvImpl implements StorySv {
     ImageRepo imageRepo;
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    NewestChapterRepo newestChapterRepo;
     @Override
     public Optional<StoryEntity> findById(Long id) {
         return storyRepo.findById(id);
@@ -156,6 +158,10 @@ public class StorySvImpl implements StorySv {
     @Override
     public void upChapter(UpChapterForm upChapterForm) {
         ChapterEntity chapter = new ChapterEntity();
+        Optional<NewestChapEntity> optional = newestChapterRepo.findByStoryId(upChapterForm.getStoryId());
+        NewestChapEntity newestChap = optional.isPresent()
+                ? optional.get()
+                : null;
 
         if (upChapterForm.getId() == null) {
             chapter.setChap(chapterRepo.getChapNumOfStory(upChapterForm.getStoryId()) + 1);
@@ -164,6 +170,11 @@ public class StorySvImpl implements StorySv {
         }
         new ModelMapper().map(upChapterForm, chapter);
         chapterRepo.save(chapter);
+
+        if (newestChap != null) {
+            newestChapterRepo.delete(newestChap);
+        }
+        newestChapterRepo.save(new NewestChapEntity(upChapterForm.getStoryId(), chapter));
     }
 
     @Override
