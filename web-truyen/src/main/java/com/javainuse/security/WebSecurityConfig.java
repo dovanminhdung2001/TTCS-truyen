@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -56,8 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/authenticate", "/register", "/api/v1/story/v2/**", "/upload/**", "/api/v1/kind",
-					"/api/v1/chapter/v2/**",
-					"/**"
+					"/api/v1/chapter/v2/**"
 				).permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and().
