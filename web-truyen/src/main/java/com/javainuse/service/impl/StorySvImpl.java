@@ -199,7 +199,9 @@ public class StorySvImpl implements StorySv {
     @Override
     public HomePageRes getHomePage(Pageable pageable) {
         Page<StoryHomePageDTO> storyHomePageDTOPage = newestChapterRepo.getHomePage(pageable);
+        HomePageRes res = new HomePageRes();
 
-        return null;
+        res.setStoryHomePageDTOPage(storyHomePageDTOPage);
+        return res;
     }
 }
