@@ -171,7 +171,7 @@ public class StorySvImpl implements StorySv {
             storyPersonalDTOList.add(new StoryPersonalDTO(x, chapterRepo.getChapNumOfStory(x.getId())));
         }
 
-        Page<StoryPersonalDTO> storyPersonalDTOPage = new PageImpl<>(storyPersonalDTOList);
+        Page<StoryPersonalDTO> storyPersonalDTOPage = new PageImpl<>(storyPersonalDTOList, storyEntityPage.getPageable(), storyEntityPage.getTotalElements());
 
         new ModelMapper().map(storyEntityPage, storyPersonalDTOPage);
         return storyPersonalDTOPage;
