@@ -2,6 +2,7 @@ package com.javainuse.security;
 
 import com.javainuse.security.jwt.JwtAuthenticationEntryPoint;
 import com.javainuse.security.jwt.JwtRequestFilter;
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
-		httpSecurity.csrf().disable()
+		httpSecurity.cors().and().csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/authenticate", "/register", "/api/v1/story/v2/**", "/upload/**", "/api/v1/kind",
 					"/api/v1/chapter/v2/**"
