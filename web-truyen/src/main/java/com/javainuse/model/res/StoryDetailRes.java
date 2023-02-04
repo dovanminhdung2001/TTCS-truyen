@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class StoryDetailRes {
     private StoryEntity story;
+    private String authorName;
     private List<ChapterByStoryDTO> chapterByStoryDTOList;
 
     public StoryDetailRes(StoryEntity story) {

@@ -39,6 +39,8 @@ public class StorySvImpl implements StorySv {
     ModelMapper modelMapper;
     @Autowired
     ImageRepo imageRepo;
+    @Autowired
+    UserRepo userRepo;
     @Override
     public Optional<StoryEntity> findById(Long id) {
         return storyRepo.findById(id);
@@ -61,7 +63,11 @@ public class StorySvImpl implements StorySv {
 
     @Override
     public StoryDetailRes findByStoryId(Long storyId) {
-        StoryDetailRes storyDetailRes = new StoryDetailRes(storyRepo.findById(storyId).get());
+        StoryEntity story = storyRepo.findById(storyId).get();
+        StoryDetailRes storyDetailRes = new StoryDetailRes(story);
+        String authorName = userRepo.findById(story.getAuthorId()).get().getName();
+
+        storyDetailRes.setAuthorName(authorName);
         storyDetailRes.setChapterByStoryDTOList(chapterRepo.getListChapterByStory(storyId));
 
         return storyDetailRes;
