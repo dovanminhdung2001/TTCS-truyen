@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -197,9 +198,14 @@ public class StorySvImpl implements StorySv {
     }
 
     @Override
-    public HomePageRes getHomePage(Pageable pageable) {
+    public HomePageRes getHomePage(Pageable pageable) throws ParseException {
         Page<StoryHomePageDTO> storyHomePageDTOPage = newestChapterRepo.getHomePage(pageable);
         HomePageRes res = new HomePageRes();
+        List<StoryHomePageDTO> list = storyHomePageDTOPage.getContent();
+
+        for (StoryHomePageDTO x : list) {
+            x.setCreated();
+        }
 
         res.setStoryHomePageDTOPage(storyHomePageDTOPage);
         return res;

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 public interface StorySv extends BaseCRUD<StoryEntity> {
@@ -23,5 +24,5 @@ public interface StorySv extends BaseCRUD<StoryEntity> {
 
     public Page<StoryPersonalDTO> findAllByUserId(Long userId, Pageable pageable);
 
-    HomePageRes getHomePage(Pageable pageable);
+    HomePageRes getHomePage(Pageable pageable) throws ParseException;
 }

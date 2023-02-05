@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 @CrossOrigin
 @RestController
@@ -59,7 +60,7 @@ public class StoryAPI {
     }
 
     @GetMapping("/v2/home")
-    private ResponseEntity<?> getHomePage(Pageable pageable) {
+    private ResponseEntity<?> getHomePage(Pageable pageable) throws ParseException {
         return ResponseUtil.ok(storySv.getHomePage(pageable));
     }
 }

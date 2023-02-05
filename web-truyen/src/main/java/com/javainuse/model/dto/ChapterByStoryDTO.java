@@ -18,6 +18,25 @@ public class ChapterByStoryDTO {
         this.id = id;
         this.title = title;
         this.chap = chap;
-        this.createDate = DateUtils.sdtf.format(createDate);
+        this.createDate = formatCreatedDate(createDate);
+    }
+
+    private String formatCreatedDate(Date  createdDate) {
+        Date now = DateUtils.today();
+        Long day = 24 * 60 * 60 * 1000L;
+        Long hour = 60 * 60 * 1000L;
+        Long minute = 60 * 1000L;
+        Long diff = now.getTime() - createdDate.getTime();
+
+        if (diff >= 20 * day)
+            return DateUtils.sdf.format(createdDate);
+
+        if (diff >= day)
+            return diff / day + " ngày trước";
+
+        if (diff >= hour)
+            return diff / hour + " giờ trước";
+
+        return diff / minute + " phút trước";
     }
 }
