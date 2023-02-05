@@ -14,5 +14,7 @@ import java.util.List;
 public class ReadChapterRes {
     private ChapterEntity chapter;
     private Integer maxChap;
+    private Long prevChapterId;
+    private Long nextChapterId;
     private List<ChapterIdChapNameDTO> chapterIdChapNameDTOList;
 }
