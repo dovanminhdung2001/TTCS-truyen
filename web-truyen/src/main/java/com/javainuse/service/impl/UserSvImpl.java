@@ -93,7 +93,7 @@ public class UserSvImpl implements UserSv {
             }
 
             Files.copy(avatar.getInputStream(), imagePath.resolve(newAvtName));
-            ImageEntity newAtv = imageRepo.save(new ImageEntity(null, newAvtName, "/upload/" + newAvtName));
+            ImageEntity newAtv = imageRepo.save(new ImageEntity(null, newAvtName, "upload/" + newAvtName));
 
             user.setAvatar(newAtv);
             user = userRepo.save(user);
