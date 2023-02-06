@@ -1,17 +1,14 @@
 package com.javainuse.controller;
 
 import com.javainuse.entity.UserEntity;
-import com.javainuse.model.req.ChangeUserInforForm;
+import com.javainuse.model.req.ChangePasswordForm;
+import com.javainuse.model.req.ChangeUserNameForm;
 import com.javainuse.service.impl.UserSvImpl;
 import com.javainuse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,9 +38,14 @@ public class UserAPI {
         return ResponseUtil.ok(userSv.findById(userId).get());
     }
 
-    @PostMapping
-    public ResponseEntity<?> save (@RequestBody ChangeUserInforForm form) {
-        return ResponseUtil.ok(userSv.save(form));
+    @PostMapping("/name")
+    public ResponseEntity<?> updateName (@RequestBody ChangeUserNameForm form) {
+        return ResponseUtil.ok(userSv.updateName(form));
+    }
+
+    @PostMapping("/password")
+    public ResponseEntity<?> updatePass (@RequestBody ChangePasswordForm form) {
+        return ResponseUtil.ok(userSv.updatePassword(form));
     }
 
     @PostMapping("/avatar")

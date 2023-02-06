@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangeUserInforForm {
+public class ChangeUserNameForm {
     private Long id;
     private String name;
-    private String password;
 }

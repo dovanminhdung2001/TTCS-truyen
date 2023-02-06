@@ -2,7 +2,8 @@ package com.javainuse.service.impl;
 
 import com.javainuse.entity.ImageEntity;
 import com.javainuse.entity.UserEntity;
-import com.javainuse.model.req.ChangeUserInforForm;
+import com.javainuse.model.req.ChangePasswordForm;
+import com.javainuse.model.req.ChangeUserNameForm;
 import com.javainuse.repo.ImageRepo;
 import com.javainuse.repo.UserRepo;
 import com.javainuse.service.UserSv;
@@ -10,6 +11,8 @@ import com.javainuse.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +33,9 @@ public class UserSvImpl implements UserSv {
     ImageRepo imageRepo;
     @Autowired
     private PasswordEncoder bcryptEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     private final Path imagePath = Paths.get("static\\upload");
     @Override
     public Optional<UserEntity> findById(Long id) {
@@ -57,16 +63,37 @@ public class UserSvImpl implements UserSv {
     }
 
     @Override
-    public UserEntity save(ChangeUserInforForm form) {
+    public UserEntity updateName (ChangeUserNameForm form) {
         UserEntity user = userRepo.findById(form.getId()).get();
 
         if (user == null)
             return new UserEntity();
 
         user.setName(form.getName());
-        user.setPassword(bcryptEncoder.encode(form.getPassword()));
 
         return userRepo.save(user);
+    }
+
+    @Override
+    public UserEntity updatePassword(ChangePasswordForm form) {
+        UserEntity user = userRepo.findById(form.getUserId()).get();
+
+        if (user == null)
+            return new UserEntity();
+
+        System.out.println("form: " + bcryptEncoder.encode(form.getOldPass()));
+        System.out.println("data: " + user.getPassword());
+
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), form.getOldPass()));
+            if (form.getNewPass().equals(form.getRepeat())) {
+                user.setPassword(bcryptEncoder.encode(form.getNewPass()));
+                return userRepo.save(user);
+            }
+            return new UserEntity();
+        } catch (Exception e) {
+            return new UserEntity();
+        }
     }
 
     @Override
