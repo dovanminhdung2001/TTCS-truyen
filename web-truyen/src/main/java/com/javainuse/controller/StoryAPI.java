@@ -3,6 +3,7 @@ package com.javainuse.controller;
 import com.javainuse.model.req.UpChapterForm;
 import com.javainuse.model.req.UpStoryForm;
 import com.javainuse.repo.ImageRepo;
+import com.javainuse.repo.StoryRepo;
 import com.javainuse.service.impl.StorySvImpl;
 import com.javainuse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class StoryAPI {
     StorySvImpl storySv;
     @Autowired
     ImageRepo imageRepo;
+    @Autowired
+    StoryRepo storyRepo;
     @PostMapping
     private ResponseEntity<?> save (@RequestBody UpStoryForm form) {
         return ResponseUtil.ok(storySv.save(form));
@@ -43,11 +46,6 @@ public class StoryAPI {
         return ResponseUtil.ok(storySv.findByStoryId(storyId));
     }
 
-    @GetMapping("/v2/name")
-    private ResponseEntity<?> findByName (@RequestParam Pageable pageable, @RequestParam String name) {
-        return ResponseUtil.ok(storySv.findByNameContain(pageable, name));
-    }
-
     @GetMapping("/v2/removeImage")
     private ResponseEntity<?> removeImage(@RequestParam Long imageId) {
         imageRepo.deleteById(imageId);
@@ -62,5 +60,20 @@ public class StoryAPI {
     @GetMapping("/v2/home")
     private ResponseEntity<?> getHomePage(Pageable pageable) throws ParseException {
         return ResponseUtil.ok(storySv.getHomePage(pageable));
+    }
+
+    @GetMapping("/v2/kind")
+    private ResponseEntity<?> findByKindId(@RequestParam Long kindId, Pageable pageable) throws ParseException {
+        return ResponseUtil.ok(storySv.findAllByKindId(kindId, pageable));
+    }
+
+    @GetMapping("/v2/name")
+    private ResponseEntity<?> findByNameContain(@RequestParam String storyName, Pageable pageable) throws ParseException {
+        return ResponseUtil.ok(storySv.findAllByNameContain(storyName, pageable));
+    }
+
+    @GetMapping("/v2/check")
+    private ResponseEntity<?> check() {
+        return ResponseUtil.ok(storyRepo.testQuery());
     }
 }

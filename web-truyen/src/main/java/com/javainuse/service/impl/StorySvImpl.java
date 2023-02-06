@@ -154,11 +154,6 @@ public class StorySvImpl implements StorySv {
     }
 
     @Override
-    public Page<StoryEntity> findByNameContain(Pageable pageable, String name) {
-        return storyRepo.findAllByNameContainingIgnoreCase(pageable, name);
-    }
-
-    @Override
     public void upChapter(UpChapterForm upChapterForm) {
         ChapterEntity chapter = new ChapterEntity();
         Optional<NewestChapEntity> optional = newestChapterRepo.findByStoryId(upChapterForm.getStoryId());
@@ -200,6 +195,29 @@ public class StorySvImpl implements StorySv {
     @Override
     public HomePageRes getHomePage(Pageable pageable) throws ParseException {
         Page<StoryHomePageDTO> storyHomePageDTOPage = newestChapterRepo.getHomePage(pageable);
+        HomePageRes res = new HomePageRes();
+        List<StoryHomePageDTO> list = storyHomePageDTOPage.getContent();
+
+        for (StoryHomePageDTO x : list) {
+            x.setCreated();
+        }
+
+        res.setStoryHomePageDTOPage(storyHomePageDTOPage);
+        return res;
+    }
+
+    @Override
+    public HomePageRes findAllByKindId(Long kindId, Pageable pageable) throws ParseException {
+        return setHomePageRes(storyRepo.filterByKindId(kindId, pageable));
+    }
+
+    @Override
+    public HomePageRes findAllByNameContain(String storyName, Pageable pageable) throws ParseException {
+        return setHomePageRes(storyRepo.filterByNameContain(storyName, pageable));
+    }
+
+
+    HomePageRes setHomePageRes(Page<StoryHomePageDTO> storyHomePageDTOPage) throws ParseException {
         HomePageRes res = new HomePageRes();
         List<StoryHomePageDTO> list = storyHomePageDTOPage.getContent();
 

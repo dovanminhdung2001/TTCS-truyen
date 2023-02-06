@@ -19,10 +19,13 @@ public interface StorySv extends BaseCRUD<StoryEntity> {
     public StoryEntity save(UpStoryForm form);
     public StoryEntity updateAvatar(Long storyId, MultipartFile avatar) throws IOException;
     public List<StoryEntity> findByNameContain(String name);
-    public Page<StoryEntity> findByNameContain(Pageable pageable, String name);
     public void upChapter(UpChapterForm upChapterForm);
 
     public Page<StoryPersonalDTO> findAllByUserId(Long userId, Pageable pageable);
 
     HomePageRes getHomePage(Pageable pageable) throws ParseException;
+
+    HomePageRes findAllByKindId(Long kindId, Pageable pageable) throws ParseException;
+
+    HomePageRes findAllByNameContain(String storyName, Pageable pageable) throws ParseException;
 }
