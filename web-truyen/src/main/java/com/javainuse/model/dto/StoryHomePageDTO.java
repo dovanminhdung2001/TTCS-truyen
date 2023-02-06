@@ -21,7 +21,6 @@ public class StoryHomePageDTO {
 
     public void setCreated() throws ParseException {
         Date cre = DateUtils.sdtf.parse(createdDate);
-
         createdDate = formatCreatedDate(cre);
     }
 
@@ -30,7 +29,7 @@ public class StoryHomePageDTO {
         Long day = 24 * 60 * 60 * 1000L;
         Long hour = 60 * 60 * 1000L;
         Long minute = 60 * 1000L;
-        Long diff = now.getTime() - createdDate.getTime();
+        Long diff = now.getTime() - createdDate.getTime() - 12 * hour;
 
         if (diff >= 20 * day)
             return DateUtils.sdf.format(createdDate);

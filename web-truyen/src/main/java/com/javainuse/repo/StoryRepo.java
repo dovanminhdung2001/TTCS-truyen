@@ -18,7 +18,7 @@ public interface StoryRepo extends JpaRepository<StoryEntity, Long> {
     @Query("select new com.javainuse.model.dto.StoryHomePageDTO " +
             "(s.id, i.path, s.name, n.chapterId, n.chap, n.createdDate  ) " +
             "from StoryEntity s, ImageEntity i, NewestChapEntity n, StoryKindEntity k " +
-            "where s.id = n.storyId and i.id = s.avatar.id and k.storyId = s.id and k.id = :kindId "  +
+            "where s.id = n.storyId and i.id = s.avatar.id and k.storyId = s.id and k.kind.id = :kindId "  +
             "order by n.id desc ")
     Page<StoryHomePageDTO> filterByKindId(@Param("kindId") Long kindId, Pageable pageable);
     @Query("select new com.javainuse.model.dto.StoryHomePageDTO(s.id, i.path, s.name, n.chapterId, n.chap, n.createdDate  )  " +

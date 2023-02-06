@@ -26,7 +26,7 @@ public class ChapterByStoryDTO {
         Long day = 24 * 60 * 60 * 1000L;
         Long hour = 60 * 60 * 1000L;
         Long minute = 60 * 1000L;
-        Long diff = now.getTime() - createdDate.getTime();
+        Long diff = now.getTime() - createdDate.getTime() ;
 
         if (diff >= 20 * day)
             return DateUtils.sdf.format(createdDate);
